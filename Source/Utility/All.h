@@ -11,6 +11,7 @@
 #include "Binarymodification\ImportAddressTable.h"
 #include "Binarymodification\Memoryprotection.h"
 #include "Binarymodification\Patternscanning.h"
+#include "Binarymodification\Insetopcode.h"
 #include "Cryptography\Hashing\FNV1.h"
 #include "Debug\Hardwarebreakpoint.h"
 #include "Strings\Variadicstring.h"
