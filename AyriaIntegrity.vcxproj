@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\SteamCEG\Traphandler.cpp" />
     <ClCompile Include="Source\Utility\Binarymodification\ImportAddressTable.cpp" />
     <ClCompile Include="Source\Utility\Binarymodification\Insertopcode.cpp" />
     <ClCompile Include="Source\Utility\Binarymodification\Memoryprotection.cpp" />
@@ -33,6 +34,7 @@
     <ClInclude Include="Source\Configuration\Defines.h" />
     <ClInclude Include="Source\Configuration\Macros.h" />
     <ClInclude Include="Source\Configuration\Warnings.h" />
+    <ClInclude Include="Source\SteamCEG\SteamCEG.h" />
     <ClInclude Include="Source\Utility\All.h" />
     <ClInclude Include="Source\Utility\Binarymodification\ImportAddressTable.h" />
     <ClInclude Include="Source\Utility\Binarymodification\Insetopcode.h" />
