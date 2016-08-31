@@ -19,8 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\SteamCEG\Revealhandler.cpp" />
-    <ClCompile Include="Source\SteamCEG\Traphandler.cpp" />
+    <ClCompile Include="Source\SteamCEG\CEGLoader.cpp" />
+    <ClCompile Include="Source\SteamCEG\CEGRevealhandler.cpp" />
+    <ClCompile Include="Source\SteamCEG\CEGTraphandler.cpp" />
     <ClCompile Include="Source\Utility\Binarymodification\ImportAddressTable.cpp" />
     <ClCompile Include="Source\Utility\Binarymodification\Insertopcode.cpp" />
     <ClCompile Include="Source\Utility\Binarymodification\Memoryprotection.cpp" />
