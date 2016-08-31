@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\SteamCEG\Revealhandler.cpp" />
     <ClCompile Include="Source\SteamCEG\Traphandler.cpp" />
     <ClCompile Include="Source\Utility\Binarymodification\ImportAddressTable.cpp" />
     <ClCompile Include="Source\Utility\Binarymodification\Insertopcode.cpp" />
@@ -45,6 +46,8 @@
     <ClInclude Include="Source\Utility\Files\Filesystem.h" />
     <ClInclude Include="Source\Utility\Strings\Debugstring.h" />
     <ClInclude Include="Source\Utility\Strings\Variadicstring.h" />
+    <ClInclude Include="Thirdparty\base64.h" />
+    <ClInclude Include="Thirdparty\json.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AyriaIntegrity.licenseheader" />
@@ -104,32 +107,36 @@
     <IntDir>$(SolutionDir)Bin\Temporary\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.Ayria$(PlatformArchitecture)</TargetExt>
-    <IncludePath>$(SolutionDir)Source;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Source;$(SolutionDir)Thirdparty;$(IncludePath)</IncludePath>
     <LinkIncremental>false</LinkIncremental>
+    <SourcePath>$(SolutionDir)Thirdparty;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)Bin\</OutDir>
     <IntDir>$(SolutionDir)Bin\Temporary\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.Ayria$(PlatformArchitecture)</TargetExt>
-    <IncludePath>$(SolutionDir)Source;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Source;$(SolutionDir)Thirdparty;$(IncludePath)</IncludePath>
     <LinkIncremental>false</LinkIncremental>
+    <SourcePath>$(SolutionDir)Thirdparty;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)Bin\</OutDir>
     <IntDir>$(SolutionDir)Bin\Temporary\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.Ayria$(PlatformArchitecture)</TargetExt>
-    <IncludePath>$(SolutionDir)Source;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Source;$(SolutionDir)Thirdparty;$(IncludePath)</IncludePath>
     <LinkIncremental>false</LinkIncremental>
+    <SourcePath>$(SolutionDir)Thirdparty;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)Bin\</OutDir>
     <IntDir>$(SolutionDir)Bin\Temporary\</IntDir>
     <TargetName>$(ProjectName)</TargetName>
     <TargetExt>.Ayria$(PlatformArchitecture)</TargetExt>
-    <IncludePath>$(SolutionDir)Source;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)Source;$(SolutionDir)Thirdparty;$(IncludePath)</IncludePath>
     <LinkIncremental>false</LinkIncremental>
+    <SourcePath>$(SolutionDir)Thirdparty;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
