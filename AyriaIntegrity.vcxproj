@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Utility\Binarymodification\ImportAddressTable.cpp" />
+    <ClCompile Include="Source\Utility\Binarymodification\Memoryprotection.cpp" />
     <ClCompile Include="Source\Utility\Binarymodification\Patternscanning.cpp" />
     <ClCompile Include="Source\Utility\Debug\Hardwarebreakpoint.cpp" />
     <ClCompile Include="Source\Utility\Files\Filesystem.cpp" />
@@ -33,6 +34,7 @@
     <ClInclude Include="Source\Configuration\Warnings.h" />
     <ClInclude Include="Source\Utility\All.h" />
     <ClInclude Include="Source\Utility\Binarymodification\ImportAddressTable.h" />
+    <ClInclude Include="Source\Utility\Binarymodification\Memoryprotection.h" />
     <ClInclude Include="Source\Utility\Binarymodification\Patternscanning.h" />
     <ClInclude Include="Source\Utility\Cryptography\Hashing\FNV1.h" />
     <ClInclude Include="Source\Utility\Debug\Hardwarebreakpoint.h" />
