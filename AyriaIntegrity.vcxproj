@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\DllMain.cpp" />
     <ClCompile Include="Source\SteamCEG\CEGLoader.cpp" />
     <ClCompile Include="Source\SteamCEG\CEGRevealhandler.cpp" />
     <ClCompile Include="Source\SteamCEG\CEGTraphandler.cpp" />
