@@ -115,11 +115,11 @@ struct CEGLoader
 
                         for each (auto Result in Results)
                         {
-                            auto Protection = Unprotectrange((void *)Result, Data.length());
+                            auto Protection = Unprotectrange((void *)Result, Data.size());
                             {
                                 std::memcpy((void *)(Result + Offset), Data.data(), Data.size());
                             }
-                            Protectrange((void *)Result, Data.length(), Protection);
+                            Protectrange((void *)Result, Data.size(), Protection);
                         }
                     }
 
