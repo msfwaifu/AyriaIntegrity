@@ -96,12 +96,12 @@ size_t Findpattern(size_t Start, size_t End, std::string Pattern, std::string Ma
 std::vector<size_t> FindpatternMultiple(size_t Start, size_t End, std::string Pattern, std::string Mask)
 {
     std::vector<size_t> Results;
-    size_t Lastscan = 0;
+    size_t Lastscan = Start;
 
     do
     {
         // Scan until there is no more results.
-        Lastscan = Findpattern(Start + Lastscan, End, Pattern, Mask);
+        Lastscan = Findpattern(Lastscan, End, Pattern, Mask);
         if (Lastscan) Results.push_back(Lastscan);
 
     } while (Lastscan);
@@ -127,13 +127,17 @@ size_t FindpatternData(std::string Pattern, std::string Mask, size_t Offset)
 std::vector<size_t> FindpatternTextMultiple(std::string Pattern, std::string Mask)
 {
     std::vector<size_t> Results;
-    size_t Lastscan = 0;
+    size_t Lastscan = Textstart;
 
     do
     {
         // Scan until there is no more results.
-        Lastscan = FindpatternText(Pattern, Mask, Lastscan);
-        if (Lastscan) Results.push_back(Lastscan);
+        Lastscan = FindpatternText(Pattern, Mask, Lastscan - Textstart);
+        if (Lastscan)
+        {
+            Results.push_back(Lastscan);
+            Lastscan++;
+        }
 
     } while (Lastscan);
     
@@ -142,13 +146,17 @@ std::vector<size_t> FindpatternTextMultiple(std::string Pattern, std::string Mas
 std::vector<size_t> FindpatternDataMultiple(std::string Pattern, std::string Mask)
 {
     std::vector<size_t> Results;
-    size_t Lastscan = 0;
+    size_t Lastscan = Datastart;
 
     do
     {
         // Scan until there is no more results.
-        Lastscan = FindpatternData(Pattern, Mask, Lastscan);
-        if (Lastscan) Results.push_back(Lastscan);
+        Lastscan = FindpatternData(Pattern, Mask, Lastscan - Datastart);
+        if (Lastscan)
+        {
+            Results.push_back(Lastscan);
+            Lastscan++;
+        }
 
     } while (Lastscan);
     
@@ -212,5 +220,7 @@ std::vector<size_t> FindpatternFormatMultiple(std::string Readablepattern)
         Iterator++;
     }
 
-    return FindpatternMultiple(Textstart, Dataend, Pattern, Mask);
+    std::vector<size_t> Result = FindpatternTextMultiple(Pattern, Mask);
+    if (Result.size()) return Result;
+    else return FindpatternMultiple(Textstart, Dataend, Pattern, Mask);
 }
