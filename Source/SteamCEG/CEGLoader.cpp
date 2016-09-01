@@ -27,7 +27,7 @@ struct Concealdata
         nlohmann::json Reader;
         try
         {
-            Reader.parse(JSON);
+            Reader = nlohmann::json::parse(JSON);
             Returnaddress = Reader["Returnaddress"];
             Functionaddress = Reader["Functionaddress"];
             Base64::Decode(Reader["Encryptionkey"], &Encryptionkey);
@@ -67,12 +67,12 @@ struct CEGLoader
         for each (auto Config in CEGPatches)
         {
             std::string Configurationfile;
-            if (Filesystem::Readfile(va("./Plugins/Integrity/%s", Config.c_str()), &Configurationfile))
+            if (Filesystem::Readfile((std::string("./Plugins/Integrity/" + Config).c_str()), &Configurationfile))
             {
                 try
                 {
                     nlohmann::json Reader;
-                    Reader.parse(Configurationfile);
+                    Reader = nlohmann::json::parse(Configurationfile);
 
                     // Verify that this is the correct exe-version.
                     std::vector<uint64_t> Signature = Reader["Signature"];
@@ -80,6 +80,48 @@ struct CEGLoader
 
                     // Get the revealhook.
                     SetRevealhook(Reader["Revealhookaddress"]);
+
+                    // Get jump patches.
+                    std::vector<nlohmann::json> Jumps = Reader["Jumps"];
+                    for each (auto Jump in Jumps)
+                    {
+                        std::vector<uint64_t> Addresses = Jump;
+                        Insertjump(Addresses[0], Addresses[1]);
+                    }
+
+                    // Get call patches.
+                    std::vector<nlohmann::json> Calls = Reader["Calls"];
+                    for each (auto Call in Calls)
+                    {
+                        std::vector<uint64_t> Addresses = Call;
+                        Insertcall(Addresses[0], Addresses[1]);
+                    }
+
+                    // Get 'mov eax' patches.
+                    std::vector<nlohmann::json> Moves = Reader["Moves"];
+                    for each (auto Mov in Moves)
+                    {
+                        std::vector<uint64_t> Addresses = Mov;
+                        Insertmov(Addresses[0], Addresses[1]);
+                    }
+
+                    // Get the replacement patterns.
+                    std::vector<nlohmann::json> Patternreplace = Reader["Patternreplace"];
+                    for each (auto Pattern in Patternreplace)
+                    {
+                        int64_t Offset = Pattern["Offset"];
+                        std::string Data;  Base64::Decode(Pattern["Data"], &Data);
+                        auto Results = FindpatternFormatMultiple(Pattern["Pattern"]);
+
+                        for each (auto Result in Results)
+                        {
+                            auto Protection = Unprotectrange((void *)Result, Data.length());
+                            {
+                                std::memcpy((void *)(Result + Offset), Data.data(), Data.size());
+                            }
+                            Protectrange((void *)Result, Data.length(), Protection);
+                        }
+                    }
 
                     // Get the encrypted blocks.
                     std::vector<nlohmann::json> Blocks = Reader["Concealblocks"];
@@ -89,11 +131,14 @@ struct CEGLoader
                         std::string JSONString;
                         JSONString = Block.dump();
                         Data.Deserialize(JSONString);
-                        if(Data.Parsed)
+                        if (Data.Parsed)
                             Concealedblocks.push_back(Data);
                     }
                 }
-                catch (...) {};
+                catch (std::exception &e)
+                {
+                    DebugPrint(va("%s failed to parse \"%s\" for reason: %s", __func__, Config.c_str(), e.what()));
+                };
             }
         }
     }
