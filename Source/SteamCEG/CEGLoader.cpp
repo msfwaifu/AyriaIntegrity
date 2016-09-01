@@ -78,8 +78,12 @@ struct CEGLoader
                     std::vector<uint64_t> Signature = Reader["Signature"];
                     if (*(uint64_t *)Signature[0] != Signature[1]) continue;
 
-                    // Get the revealhook.
-                    SetRevealhook(Reader["Revealhookaddress"]);
+                    // Get the revealhooks.
+                    std::vector<size_t> Hooks = Reader["Revealhookaddress"];
+                    for each(auto Hook in Hooks)
+                    {
+                        SetRevealhook(Hook);
+                    }
 
                     // Get jump patches.
                     std::vector<nlohmann::json> Jumps = Reader["Jumps"];
