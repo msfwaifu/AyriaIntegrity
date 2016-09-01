@@ -72,7 +72,7 @@ size_t Findpattern(size_t Start, size_t End, std::string Pattern, std::string Ma
             if (Mask[i] == '\x00') continue;
 
             // Break on invalid compare.
-            if (((uint8_t *)Address)[i] != Pattern[i])
+            if (((uint8_t *)Address)[i] != ((uint8_t *)Pattern)[i])
                 return false;
         }
 
@@ -192,7 +192,7 @@ std::vector<size_t> FindpatternFormatMultiple(std::string Readablepattern)
     std::string Mask;
     
     // Iterate through the string.
-    while (Iterator++)
+    for(; *Iterator; ++Iterator)
     {
         // Skip spaces.
         if (*Iterator == ' ')
