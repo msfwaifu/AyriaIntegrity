@@ -1,7 +1,7 @@
 /*
     Initial author: (https://github.com/)Convery for Ayria.se
     License: LGPL 3.0
-    Started: 2016-8-31
+    Started: 2016-04-13
     Notes:
         A basic system for file operations.
         MSVC makes use of C++17 TS.
@@ -24,4 +24,5 @@ struct Filesystem
     static bool Createdir(const char *Path);
 
     static bool Searchdir(std::string Searchpath, std::vector<std::string> *Filenames, const char *Extension = nullptr);
+    static bool Searchdirrecursive(std::string Searchpath, std::vector<std::string> *Filenames, const char *Extension = nullptr);
 };
