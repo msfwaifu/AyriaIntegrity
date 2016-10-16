@@ -16,5 +16,5 @@ Any DRM related system (e.g. Steams CEG) will be backed by anti-piracy checks in
 Extensionloading
 --
 
-This module is intended to be loaded via Ayrias bootstrap module (http://git.ayria.se/ayria-core/NativeBootstrap), as such the user may drag and drop it into their ./Plugins/ directory. 
+This module is intended to be loaded via Ayrias bootstrap module (https://github.com/AyriaPublic/NativeBootstrap), as such the user may drag and drop it into their ./Plugins/ directory. 
 The plugin loads protection specific configurations from the ./Plugins/Integrity/ directory.
