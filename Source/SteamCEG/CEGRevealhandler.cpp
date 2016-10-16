@@ -150,7 +150,7 @@ void SetRevealhook(const size_t Address)
         InstallTraphandler();
 
         // Find the decryptor and memcpy.
-        Revealmemcpy = size_t(FindpatternText("\xE8????\x8B\x56\x08\x8B\x46\x0C\x8B\x4E\x04", std::string("\x01\x00\x00\x00\x00\x01\x01\x01\x01\x01\x01\x01\x01\x01", 14)));
+        Revealmemcpy = FindpatternText("\xE8????\x8B\x56\x08\x8B\x46\x0C\x8B\x4E\x04", std::string("\x01\x00\x00\x00\x00\x01\x01\x01\x01\x01\x01\x01\x01\x01", 14));
         if (Revealmemcpy)
         {
             Insertcall(Revealmemcpy, uint64_t(Revealmemcpyhook));
