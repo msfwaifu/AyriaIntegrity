@@ -1,5 +1,4 @@
-AyriaIntegrity plugin
----
+# Ayria Integrity plugin
 
 This plugin aims to open games up for modding. 
 As anti-cheat and anti-piracy tools get more advanced they start to add anti-tampering.
@@ -12,9 +11,6 @@ unless those parts are so intertwined with the anti-tampering that one can't rem
 
 Any DRM related system (e.g. Steams CEG) will be backed by anti-piracy checks in the relevant part of AyriaPlatform.
 
+## Plugin loading
 
-Extensionloading
---
-
-This module is intended to be loaded via Ayrias bootstrap module (https://github.com/AyriaPublic/NativeBootstrap), as such the user may drag and drop it into their ./Plugins/ directory. 
-The plugin loads protection specific configurations from the ./Plugins/Integrity/ directory.
+The plugin should, like all other plugins, be placed in the games `./Plugins/` directory where it gets loaded by the [Bootstrap](https://github.com/AyriaPublic/NativeBootstrap) module which is injected into the game by the desktop client. The protection configuration is loaded from the `./Plugins/AyriaIntegrity/` directory.
