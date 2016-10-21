@@ -3,7 +3,7 @@
     License: LGPL 3.0
     Started: 2016-8-31
     Notes:
-        Loads all configuration-files from ./Plugins/Integrity/
+        Loads all configuration-files from ./Plugins/AyriaIntegrity/
 */
 
 #include <Configuration\All.h>
@@ -62,12 +62,12 @@ struct CEGLoader
     CEGLoader()
     {
         std::vector<std::string> CEGPatches;
-        Filesystem::Searchdir("./Plugins/Integrity/", &CEGPatches, "CEG");
+        Filesystem::Searchdir("./Plugins/AyriaIntegrity/", &CEGPatches, "CEG");
 
         for each (auto Config in CEGPatches)
         {
             std::string Configurationfile;
-            if (Filesystem::Readfile((std::string("./Plugins/Integrity/" + Config).c_str()), &Configurationfile))
+            if (Filesystem::Readfile((std::string("./Plugins/AyriaIntegrity/" + Config).c_str()), &Configurationfile))
             {
                 try
                 {
